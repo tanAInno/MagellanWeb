@@ -124,6 +124,39 @@ class Monitor extends Component{
         }
     }
 
+    renderProgress(data){
+        if(window.innerWidth < 1024){
+            return(
+                <SCP
+                    percentage={data}
+                    stroke="#A239CA"
+                    background="#0e0b16"
+                    strokeWidth="15"
+                    diameter="200"/>
+            )
+        }
+        else if(window.innerWidth >= 1024 && window.innerWidth < 1366){
+            return(
+                <SCP
+                    percentage={data}
+                    stroke="#A239CA"
+                    background="#0e0b16"
+                    strokeWidth="15"
+                    diameter="205"/>
+            )
+        }
+        else{
+            return(
+                <SCP
+                    percentage={data}
+                    stroke="#A239CA"
+                    background="#0e0b16"
+                    strokeWidth="20"
+                    diameter="270"/>
+            )
+        }
+    }
+
     render () {
         return (
             <div className="content">
@@ -131,12 +164,7 @@ class Monitor extends Component{
                 <div className="content-row">
                     <div className="circle-box">
                         <div className="progress">
-                            <SCP
-                                percentage={this.props.MonitorReducer.data1.PM2_5}
-                                stroke="#A239CA"
-                                background="#0e0b16"
-                                strokeWidth="20"
-                                diameter="270"/>
+                            {this.renderProgress(this.props.MonitorReducer.data1.PM2_5)}
                         </div>
                         {this.renderPMNumber(this.props.MonitorReducer.data1.PM2_5)}
                         <div className="data-header">
@@ -144,14 +172,9 @@ class Monitor extends Component{
                         </div>
                         {this.renderPMStatus(this.props.MonitorReducer.data1.PM2_5)}
                     </div>
-                    <div className="circle-box" style={{marginLeft: 60, marginRight: 60}}>
+                    <div className="circle-box" style={{marginLeft: '3%', marginRight: '3%'}}>
                         <div className="progress">
-                            <SCP
-                                percentage={(this.props.MonitorReducer.data1.Temperature/50)*100}
-                                stroke="#A239CA"
-                                background="#0e0b16"
-                                strokeWidth="20"
-                                diameter="270"/>
+                            {this.renderProgress((this.props.MonitorReducer.data1.Temperature/50)*100)}
                         </div>
                         {this.renderTempNumber(this.props.MonitorReducer.data1.Temperature)}
                         <div className="data-header">
@@ -161,12 +184,7 @@ class Monitor extends Component{
                     </div>
                     <div className="circle-box">
                         <div className="progress">
-                            <SCP
-                                percentage={this.props.MonitorReducer.data1.Humidity}
-                                stroke="#A239CA"
-                                background="#0e0b16"
-                                strokeWidth="20"
-                                diameter="270"/>
+                            {this.renderProgress(this.props.MonitorReducer.data1.Humidity)}
                         </div>
                         {this.renderHumNumber(this.props.MonitorReducer.data1.Humidity)}
                         <div className="data-header">
@@ -174,17 +192,12 @@ class Monitor extends Component{
                         </div>
                         {this.renderHumStatus(this.props.MonitorReducer.data1.Humidity)}
                     </div>
-                </div>
+                </div> 
                 <div className="device-name">IAQ</div>
                 <div className="content-row">
                     <div className="circle-box">
                         <div className="progress">
-                            <SCP
-                                percentage={this.props.MonitorReducer.data2.PM2_5}
-                                stroke="#A239CA"
-                                background="#0e0b16"
-                                strokeWidth="20"
-                                diameter="270"/>
+                            {this.renderProgress(this.props.MonitorReducer.data2.PM2_5)}
                         </div>
                         {this.renderPMNumber(this.props.MonitorReducer.data2.PM2_5)}
                         <div className="data-header">
@@ -192,14 +205,9 @@ class Monitor extends Component{
                         </div>
                         {this.renderPMStatus(this.props.MonitorReducer.data2.PM2_5)}
                     </div>
-                    <div className="circle-box" style={{marginLeft: 20, marginRight: 20}}>
+                    <div className="circle-box" style={{marginLeft: '1%', marginRight: '1%'}}>
                         <div className="progress">
-                            <SCP
-                                percentage={this.props.MonitorReducer.data2.CO2/50}
-                                stroke="#A239CA"
-                                background="#0e0b16"
-                                strokeWidth="20"
-                                diameter="270"/>
+                            {this.renderProgress(this.props.MonitorReducer.data2.CO2/50)}
                         </div>
                         {this.renderCO2Number(this.props.MonitorReducer.data2.CO2)}
                         <div className="data-header">
@@ -207,14 +215,9 @@ class Monitor extends Component{
                         </div>
                         {this.renderCO2Status(this.props.MonitorReducer.data2.CO2)}
                     </div>
-                    <div className="circle-box" style={{ marginRight: 20}}>
+                    <div className="circle-box" style={{marginRight: '1%'}}>
                         <div className="progress">
-                            <SCP
-                                percentage={(this.props.MonitorReducer.data2.Temperature/50)*100}
-                                stroke="#A239CA"
-                                background="#0e0b16"
-                                strokeWidth="20"
-                                diameter="270"/>
+                            {this.renderProgress((this.props.MonitorReducer.data2.Temperature/50)*100)}
                         </div>
                         {this.renderTempNumber(this.props.MonitorReducer.data2.Temperature)}
                         <div className="data-header">
@@ -224,12 +227,7 @@ class Monitor extends Component{
                     </div>
                     <div className="circle-box">
                         <div className="progress">
-                            <SCP
-                                percentage={this.props.MonitorReducer.data2.Humidity}
-                                stroke="#A239CA"
-                                background="#0e0b16"
-                                strokeWidth="20"
-                                diameter="270"/>
+                            {this.renderProgress(this.props.MonitorReducer.data2.Humidity)}
                         </div>
                         {this.renderHumNumber(this.props.MonitorReducer.data2.Humidity)}
                         <div className="data-header">
