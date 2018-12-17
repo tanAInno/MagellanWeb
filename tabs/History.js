@@ -16,19 +16,30 @@ const options = [
 ]
 
 class History extends Component {
-
-    state = {
-        log_list: [],
-        iaq_list: [],
-        dht_list: [],
-        temp_list: [],
-        from_date: "",
-        to_date: "",
-        selectedOption: null
+    
+    constructor() {
+        super()
+        this.state = {
+            log_list: [],
+            iaq_list: [],
+            dht_list: [],
+            temp_list: [],
+            used_log_list: [],
+            from_date: "",
+            to_date: "",
+            selectedOption: null,
+            counter: 0
+        }
+        this.handleOnScroll = this.handleOnScroll.bind(this)
     }
 
     componentDidMount(){
         this.getLog()
+        window.addEventListener('scroll', this.handleOnScroll);
+    }
+
+    componentWillMount() {
+        window.removeEventListener('scroll', this.handleOnScroll);
     }
 
     getDateTimeDiffer(logDate){
@@ -68,6 +79,7 @@ class History extends Component {
                     temp_log_list.push(this.state.temp_list[i])
         }
         this.setState({log_list : temp_log_list})
+        this.setState({used_log_list : temp_log_list.slice(0,20)})
     }
 
     onChangeFromDate = from_date => {
@@ -103,6 +115,7 @@ class History extends Component {
             }
             this.setState({iaq_list: temp_iaq_list})
             this.setState({dht_list: temp_dht_list})
+            this.setState({used_log_list: log_list.slice(0,20)})
         })
     }
 
@@ -141,6 +154,21 @@ class History extends Component {
         if(selectedOption.value == "All")
             this.setState({temp_list: this.props.HistoryReducer.log_list},() => this.filterLog())
     }
+
+    handleOnScroll() {
+        var scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
+        var scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
+        var clientHeight = document.documentElement.clientHeight || window.innerHeight;
+        var scrolledToBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+
+        if (scrolledToBottom) {
+            let counter = this.state.counter
+            let addList = this.state.log_list.slice(this.state.counter,this.state.counter+20)
+            this.setState({counter: this.state.counter+20})
+            let newList = this.state.used_log_list.concat(addList)
+            this.setState({used_log_list: newList})
+        }
+      }
 
     render(){
         return(
@@ -186,7 +214,7 @@ class History extends Component {
                         <div className="header-hum">Humidity</div>
                         <div className="header-date">Date</div>
                     </div>
-                    {this.state.log_list.map((data,index) => {
+                    {this.state.used_log_list.map((data,index) => {
                         return(
                             this.renderRow(data,index)
                         )
