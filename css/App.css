@@ -446,11 +446,22 @@ body, html {
     color: #0e0b16;
 }
 
-.date-picker{
-    height: 30px;
-    font-size: 20px;
-    margin-right: 2.1%;
-    width: 85%;
+@media (min-width: 24em){
+    .date-picker{
+        height: 30px;
+        font-size: 18px;
+        margin-right: 2.1%;
+        width: 80%;
+    }
+}
+
+@media (min-width: 72em){
+    .date-picker{
+        height: 30px;
+        font-size: 20px;
+        margin-right: 2.1%;
+        width: 90%;
+    }
 }
 
 @media (min-width: 24em){
