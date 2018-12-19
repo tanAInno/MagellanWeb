@@ -26,10 +26,6 @@ class App extends Component {
             this.getData2()
             this.setState({now : new Date()})
         }, 4000)
-        this.post_interval = setInterval(() => {
-            this.postData1()
-            this.postData2()
-        }, 300000)
     }
 
     pad = (n) => {
