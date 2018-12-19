@@ -62,6 +62,10 @@ module.exports = {
     devServer: {
         inline: false,
         contentBase: parentDir,
+	compress: true,
+	allowedHosts: [
+	    '.inno.co.th'	
+	],
         historyApiFallback: true,
         port: METADATA.port,
         host: METADATA.host

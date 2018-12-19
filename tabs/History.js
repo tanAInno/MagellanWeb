@@ -79,7 +79,7 @@ class History extends Component {
                     temp_log_list.push(this.state.temp_list[i])
         }
         this.setState({log_list : temp_log_list})
-        this.setState({used_log_list : temp_log_list.slice(0,20)})
+        this.setState({used_log_list : temp_log_list.slice(0,40)})
     }
 
     onChangeFromDate = from_date => {
@@ -115,7 +115,7 @@ class History extends Component {
             }
             this.setState({iaq_list: temp_iaq_list})
             this.setState({dht_list: temp_dht_list})
-            this.setState({used_log_list: log_list.slice(0,20)})
+            this.setState({used_log_list: log_list.slice(0,40)})
         })
     }
 
@@ -163,8 +163,8 @@ class History extends Component {
 
         if (scrolledToBottom) {
             let counter = this.state.counter
-            let addList = this.state.log_list.slice(this.state.counter,this.state.counter+20)
-            this.setState({counter: this.state.counter+20})
+            let addList = this.state.log_list.slice(this.state.counter,this.state.counter+40)
+            this.setState({counter: this.state.counter+40})
             let newList = this.state.used_log_list.concat(addList)
             this.setState({used_log_list: newList})
         }
