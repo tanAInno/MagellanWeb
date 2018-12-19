@@ -442,27 +442,37 @@ body, html {
 .date-text {
     font-size: 30px;
     font-weight: bold;
-    margin-right: 10px;
+    margin-right: 2%;
     color: #0e0b16;
 }
 
 .date-picker{
     height: 30px;
     font-size: 20px;
-    margin-right: 12px;
+    margin-right: 2.1%;
     width: 90%;
 }
 
-.module-select{
-    width: 20%;
-    margin-right: 15px;
-    margin-left: 10%;
+@media (min-width: 24em){
+    .module-select{
+        width: 15%;
+        margin-right: 2.3%;
+        margin-left: 3%;
+    }
+}
+
+@media (min-width: 72em){
+    .module-select{
+        width: 20%;
+        margin-right: 2.3%;
+        margin-left: 8%;
+    }
 }
 
 .filter-text{
     float: left;
     margin-bottom: 60px;
-    margin-left: 10px;
+    margin-left: 1%;
     font-size: 28px;
     font-weight: bold;
     color: #0e0b16;
